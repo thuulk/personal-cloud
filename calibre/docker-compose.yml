@@ -1,0 +1,16 @@
+services:
+  calibre-web:
+    image: lscr.io/linuxserver/calibre-web:latest
+    container_name: calibre-web
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Hermosillo
+      - DOCKER_MODS=linuxserver/mods:universal-calibre
+    volumes:
+      - ./config:/config
+      - ./library:/library
+    ports: 
+      - "8083:8083"
+    restart: unless-stopped
+
