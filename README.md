@@ -11,6 +11,11 @@ infrastructure to just git clone it into another system without repeating the pr
 
 Future implementations shall include a password manager service.
 
+## DEPENDENCIES
+### DOCKER  
+To install docker follow the instructions in the official guide: https://docs.docker.com/engine/install/  
+After installing one must add Docker into the gruop of programs your current user may acces to  
+$ sudo usermod -aG docker $USER
 
 ## INSTALATION GUIDE
 ### NAVIDROME
@@ -22,7 +27,7 @@ $ cd ~/navidrome
 ~/navidrome: $ cd data; mkdir cache; cd ..
 
 Now with the directories created, the container is ready to be spinned   
-~/navidrome: $ sudo docker compose up
+~/navidrome: $ docker compose up
 
 
 ### IMMICH
@@ -37,12 +42,12 @@ convenient for you; you may not do it and the docker container will still spin u
 the two first entail a good practice. There is no need to modify UPLOAD_LOCATION nor DB_DATA_LOCATION.
 
 Now one may spin up the container  
-~/immich: $ sudo socker compose up
+~/immich: $  socker compose up
 
 
 ### CALIBRE
 For calibre one may just spin up the container  
-$ cd ~/calibre; sudo docker compose up
+$ cd ~/calibre; docker compose up
 
 
 
