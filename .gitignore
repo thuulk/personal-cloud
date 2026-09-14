@@ -1,0 +1,8 @@
+.env
+**/.env
+library/
+postgres/
+config/
+data/
+music/
+model-cache/
