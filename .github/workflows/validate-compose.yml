@@ -4,16 +4,16 @@ on:
   push:
     paths:
       - '**/docker-compose.yml'
-    pull_request:
-      paths:
-        - '**docker-compose.yml'
+   pull_request:
+     paths:
+       - '**docker-compose.yml'
 
 jobs:
   validate:
     runs-on: ubuntu-latest
     strategy:
-    matrix:
-      service: [calibre, immich, navidrome]
+      matrix:
+        service: [calibre, immich, navidrome]
     steps:
       - uses: actions/checkout@v4
       - name: Validate ${{ matrix.service }}
