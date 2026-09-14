@@ -1,9 +1,9 @@
 # PERSONAL HOMELAB INFRASTRUCTURE 
 This project began for I needed a back-up for my iphone photos and videos, then I was
-introduced into immich and the advantages it gets over paying a cloud subscription at Apple or Google, so flashed an OS
-on an old Raspberry-PI to install my open-source gallery. I foresaw interest on expanding the usage range of the homelab
-so despite being the only app at the moment I mounted a docker container for it, as it would allow smooth installations 
-in the future. Then future arrived with Navidrome to replace my Spotify suscription alongside Calibre for getting rid of 
+introduced into immich and the advantages it gets over paying a cloud subscription at Apple or Google, so I flashed an OS
+on an old Raspberry-PI to install my open-source gallery. I foresaw interest on expanding the usage range of the homelab,
+so I spinned up  a docker container for it, as it would allow smooth installations future installations. 
+Then future arrived with Navidrome to replace my Spotify suscription alongside Calibre for getting rid of 
 Amazon Kindle, each app within its docker container. 
 
 Not long ago did I discover the concept of infrastructure as code, so I am now trying thus to replicate the homelab 
