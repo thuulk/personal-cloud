@@ -2,7 +2,7 @@
 This project began for I needed a back-up for my iphone photos and videos, then I was
 introduced into immich and the advantages it gets over paying a cloud subscription at Apple or Google, so I flashed an OS
 on an old Raspberry-PI to install my open-source gallery. I foresaw interest on expanding the usage range of the homelab,
-so I spinned up  a docker container for it, as it would allow smooth installations future installations. 
+so I spinned up a docker container for it, as it would allow smooth future installations. 
 Then future arrived with Navidrome to replace my Spotify suscription alongside Calibre for getting rid of 
 Amazon Kindle, each app within its docker container. 
 
@@ -11,13 +11,33 @@ infrastructure to just git clone it into another system without repeating the pr
 
 Future implementations shall include a password manager service.
 
+## ARCHITECTURE
+
+Each service runs in its own Docker Compose stack, isolated from the others. This is a deliberate
+choice, not a default:
+
+- **Failure isolation**: if Immich crashes or its Postgres instance gets corrupted, Navidrome and
+  Calibre-Web keep serving unaffected. A single monolithic container running all three would turn
+  any one failure into a full outage.
+- **Independent updates**: each service's image can be updated on its own schedule without
+  touching the others' dependencies or triggering unrelated migrations.
+- **Reduced attack surface**: every container exposes only the port and volumes it needs, instead
+  of one process holding access to all data at once.
+- **Dedicated dependencies where required**: Immich needs Postgres as a hard dependency; coupling
+  it to the same container as Navidrome or Calibre-Web would introduce a shared point of failure
+  with no actual benefit.
+
+This structure also maps directly onto the repository layout; one directory per service, one
+`docker-compose.yml` per directory. Cloning the repo reproduces exactly what runs in
+production, with no hidden coupling between services.
+
 ## DEPENDENCIES
 ### DOCKER  
 To install docker follow the instructions in the official guide: https://docs.docker.com/engine/install/  
-After installing one must add Docker into the gruop of programs your current user may access to  
+After installing one must add Docker into the group of programs your current user may access to  
 $ sudo usermod -aG docker $USER
 
-## INSTALATION GUIDE
+## INSTALLATION GUIDE
 ### NAVIDROME
 For spinning up the Navidrome docker container get into its root directory and create manually the data directory
 and its subdirectory cache, also creating the music directory where albums and their tracks are to be stored  
@@ -42,7 +62,7 @@ convenient for you; you may not do it and the docker container will still spin u
 the two first entail a good practice. There is no need to modify UPLOAD_LOCATION nor DB_DATA_LOCATION.
 
 Now one may spin up the container  
-~/immich: $  socker compose up
+~/immich: $  docker compose up
 
 
 ### CALIBRE
