@@ -14,7 +14,7 @@ Future implementations shall include a password manager service.
 ## DEPENDENCIES
 ### DOCKER  
 To install docker follow the instructions in the official guide: https://docs.docker.com/engine/install/  
-After installing one must add Docker into the gruop of programs your current user may acces to  
+After installing one must add Docker into the gruop of programs your current user may access to  
 $ sudo usermod -aG docker $USER
 
 ## INSTALATION GUIDE
