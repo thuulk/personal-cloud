@@ -1,4 +1,4 @@
-#PERSONAL HOMELAB INFRASTRUCTURE 
+###PERSONAL HOMELAB INFRASTRUCTURE 
 This project began for I needed a back-up for my iphone photos and videos, then I was
 introduced to Immich and the advantages it gets over paying a cloud subscription at Apple or Google, so I flashed an OS
 on an old Raspberry Pi to install my open-source gallery. I foresaw interest on expanding the usage range of the homelab,
@@ -117,7 +117,7 @@ docker compose logs
 Confirm the fix by checking the logs for `Navidrome server is ready!` with no `permission denied`
 lines after it.
 
-### Immich:`ENOENT` on `encoded-video/.immich` after moving the install directory
+### Immich: ENOENT on encoded-video/.immich after moving the install directory
 **Symptom**, the `immich_server` container restarts in a loop, with logs showing
 **[Microservices:StorageService] Failed to read (/data/encoded-video/.immich):
 Error: ENOENT: no such file or directory, open '/data/encoded-video/.immich'**  
@@ -149,10 +149,4 @@ docker compose logs -f
 
 Watch for `Successfully verified system mount folder checks` in the logs with no `ENOENT` errors
 after it.
-
-## License
-
-MIT - see [LICENSE](LICENSE).
-
-
 
