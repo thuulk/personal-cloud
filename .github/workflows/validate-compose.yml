@@ -27,12 +27,13 @@ jobs:
     needs: validate
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: self-hosted
+    strategy:
+      matrix:
+        service: [calibre, immich, navidrome]
     steps:
       - uses: actions/checkout@v4
-      - name: Deploy updated services
+      - name: Deploy ${{ matrix.service }}
         run: |
-          for service in calibre immich-app navidrome; do
-            cd ~/$service
-            docker compose up -d
-            cd -
-          done
+          cp ${{ matrix.service }}/docker-compose.yml ~/${{ matrix.service }}/docker-compose.yml
+          cd ~/${{ matrix.service }}
+          docker compose up -d
