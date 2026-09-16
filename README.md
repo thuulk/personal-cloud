@@ -1,4 +1,4 @@
-###PERSONAL HOMELAB INFRASTRUCTURE 
+# PERSONAL HOMELAB INFRASTRUCTURE 
 This project began for I needed a back-up for my iphone photos and videos, then I was
 introduced to Immich and the advantages it gets over paying a cloud subscription at Apple or Google, so I flashed an OS
 on an old Raspberry Pi to install my open-source gallery. I foresaw interest on expanding the usage range of the homelab,
@@ -11,7 +11,7 @@ infrastructure to just git clone it into another system without repeating the pr
 
 Future implementations shall include a password manager service.
 
-##ARCHITECTURE
+## ARCHITECTURE
 
 Each service runs in its own Docker Compose stack, isolated from the others. This is a deliberate
 choice, not a default:
@@ -31,16 +31,16 @@ This structure also maps directly onto the repository layout; one directory per 
 `docker-compose.yml` per directory. Cloning the repo reproduces exactly what runs in
 production, with no hidden coupling between services.
 
-##DEPENDENCIES
-###DOCKER  
+## DEPENDENCIES
+### DOCKER  
 To install docker follow the instructions in the official guide: https://docs.docker.com/engine/install/  
 After installing one must add Docker into the group of programs your current user may access to  
 ```bash
 $ sudo usermod -aG docker $USER
 ```
 
-##INSTALLATION GUIDE
-###NAVIDROME
+## INSTALLATION GUIDE
+### NAVIDROME
 For spinning up the Navidrome docker container get into its root directory and create manually the data directory
 and its subdirectory cache, also creating the music directory where albums and their tracks are to be stored  
 ```bash
@@ -56,7 +56,7 @@ Now with the directories created, the container is ready to be spinned
 ```
 
 
-###IMMICH
+### IMMICH
 For spinning up the Immich container first one has to rename the file to fulfill the .env convention  
 ```bash
 $ cd ~/immich  
@@ -74,17 +74,18 @@ Now one may spin up the container
 ```
 
 
-###CALIBRE
+### CALIBRE
 For calibre one may just spin up the container  
 ```bash
 $ cd ~/calibre; docker compose up
 ```
 
 
-##CI/CD
+## CI/CD
 The .github/workflows/validate-compose.yml workflow runs on every push or pull request that touches any of the
 Docker containers (docker-compose.yml):
-- **Validate** runs on GitHub-hosted runners (ubuntu-latest) and checks each service's compose file with ```bash
+- **Validate** runs on GitHub-hosted runners (ubuntu-latest) and checks each service's compose file with
+```bash
 docker compose config
 ```
 ensuring no syntax or identation errors in the files changed.  
@@ -100,8 +101,8 @@ Because **deploy** executes on the same physical machine that serves these apps,
 **main** only; never **pull_request** or **pull_request_targer**, so that a fork's pull request can never run 
 arbitrary code on the host machine.
 
-##Troubleshooting   
-###Navidrome: permission denied on cache path   
+## Troubleshooting   
+### Navidrome: permission denied on cache path   
 **Symptom**, Container logs show repeated errors such as **Error creating cache path: permission denied**  
 **Cause**, the `data/cache` directory was created with permissions or ownership that don't match
 the UID/GID the Navidrome process runs as inside the container.  
